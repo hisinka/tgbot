@@ -1,17 +1,18 @@
 from aiogram import Bot, Dispatcher, F
 from aiogram.types import Message
 from aiogram.filters.command import CommandStart, Command
-
+import keyboards as kb
 bot = Bot(token = '8763198603:AAGfXly0jo29YlOgKvEiGesn36CgKCHd9-k')
 dp = Dispatcher()
 
 
 @dp.message(CommandStart())
 async def start(message: Message):
-    await message.answer('Добро пожаловать в бот')
+    await message.answer('Добро пожаловать в бот',
+                         reply_markup=kb.menu)
 
 
-@dp.message(command('help'))
+@dp.message(Command('help'))
 async def help(message: Message):
     await message.answer('Вы написали команду /help')
 
